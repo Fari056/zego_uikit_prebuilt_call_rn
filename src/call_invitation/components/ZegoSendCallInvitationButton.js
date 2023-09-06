@@ -18,7 +18,8 @@ export default function ZegoSendCallInvitationButton(props) {
     timeout = 60,
     onWillPressed,
     onPressed,
-    resourceID: _resourceID = ''
+    resourceID: _resourceID = '',
+    custom_data
   } = props;
 
   const getInviteeIDList = () => {
@@ -32,15 +33,15 @@ export default function ZegoSendCallInvitationButton(props) {
   const data = JSON.stringify({
     call_id: roomID,
     invitees: invitees.map(invitee => {
-      return {user_id: invitee.userID, user_name: invitee.userName}
+      return { user_id: invitee.userID, user_name: invitee.userName }
     }),
     type: isVideoCall ? ZegoInvitationType.videoCall : ZegoInvitationType.voiceCall,
-    inviter: {id: localUser.userID, name: localUser.userName},
-    custom_data: '',
+    inviter: { id: localUser.userID, name: localUser.userName },
+    custom_data: custom_data,
   });
   const [forceRender, setForceRender] = useState(Date.now());
 
-  const onPress = ({errorCode, errorMessage, errorInvitees, invitationID, invitees: successfulInvitees }) => {
+  const onPress = ({ errorCode, errorMessage, errorInvitees, invitationID, invitees: successfulInvitees }) => {
     CallInviteStateManage.addInviteData(
       invitationID,
       localUser.userID,
