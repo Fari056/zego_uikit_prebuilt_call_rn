@@ -36,7 +36,7 @@ export default function ZegoUIKitPrebuiltCallInCallScreen(props) {
     routeParams.inviter = route.params.inviter;
     routeParams.invitationID = route.params.invitationID;
   }
-  console.log('#####ZegoUIKitPrebuiltCallInCallScreen#######', routeParams, route.params);
+  // console.log('#####ZegoUIKitPrebuiltCallInCallScreen#######', routeParams, route.params);
   const {
     origin,
     roomID,
@@ -98,7 +98,7 @@ export default function ZegoUIKitPrebuiltCallInCallScreen(props) {
       inviter === userID &&
       CallInviteStateManage.isAutoCancelInvite(invitationID)
     ) {
-      ZegoUIKit.getSignalingPlugin().cancelInvitation(invitees, JSON.stringify({"call_id": roomID, "operation_type": "cancel_invitation"}));
+      ZegoUIKit.getSignalingPlugin().cancelInvitation(invitees, JSON.stringify({ "call_id": roomID, "operation_type": "cancel_invitation" }));
       CallInviteStateManage.updateInviteDataAfterCancel(invitationID);
     }
     // navigation.navigate('ZegoInnerChildrenPage');
@@ -152,6 +152,7 @@ export default function ZegoUIKitPrebuiltCallInCallScreen(props) {
       config={{
         ...config,
         onHangUp: (duration) => {
+          console.log('On Hang Up Duration By Farhan ', duration)
           hangUpHandle();
           if (typeof config.onHangUp === 'function') {
             config.onHangUp(duration);
@@ -178,7 +179,7 @@ export default function ZegoUIKitPrebuiltCallInCallScreen(props) {
             }
           }
         },
-        onHangUpConfirmation: (typeof config.onHangUpConfirmation === 'function') ? () => {return config.onHangUpConfirmation()} : undefined,
+        onHangUpConfirmation: (typeof config.onHangUpConfirmation === 'function') ? () => { return config.onHangUpConfirmation() } : undefined,
       }}
       token={token}
       onRequireNewToken={onRequireNewToken}
