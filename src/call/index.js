@@ -136,7 +136,7 @@ function ZegoUIKitPrebuiltCall(props, ref) {
         TimingHelper.getInstance().increaseDuration()
         typeof onDurationUpdate === 'function' && onDurationUpdate(TimingHelper.getInstance().getDuration());
     }, 1000)
-    
+
     if (stateData.current.callbackID) {
         stateData.current.callbackID = 'ZegoUIKitPrebuiltCall' +
             String(Math.floor(Math.random() * 10000));
@@ -269,7 +269,7 @@ function ZegoUIKitPrebuiltCall(props, ref) {
         // we need to reset duration when call is ended from minimize
         if (isFromMinimize) {
             TimingHelper.getInstance().resetDuration()
-        } 
+        }
         // we need to reset duration when the call is normal ended.
         else if (!MinimizingHelper.getInstance().getIsMinimizeSwitch()) {
             TimingHelper.getInstance().resetDuration()
