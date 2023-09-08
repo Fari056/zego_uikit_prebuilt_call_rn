@@ -37,11 +37,12 @@ export default function ZegoSendCallInvitationButton(props) {
     }),
     type: isVideoCall ? ZegoInvitationType.videoCall : ZegoInvitationType.voiceCall,
     inviter: { id: localUser.userID, name: localUser.userName },
-    custom_data: custom_data,
+    customData: custom_data,
   });
   const [forceRender, setForceRender] = useState(Date.now());
 
   const onPress = ({ errorCode, errorMessage, errorInvitees, invitationID, invitees: successfulInvitees }) => {
+    console.log('custom_data:::By Farhan', custom_data)
     CallInviteStateManage.addInviteData(
       invitationID,
       localUser.userID,

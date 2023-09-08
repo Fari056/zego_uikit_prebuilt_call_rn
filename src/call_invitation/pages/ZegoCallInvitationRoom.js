@@ -157,7 +157,7 @@ export default function ZegoUIKitPrebuiltCallInCallScreen(props) {
           console.log('On Hang Up Duration By Farhan ', duration, custom_data)
           hangUpHandle();
           if (typeof config.onHangUp === 'function') {
-            config.onHangUp(duration, custom_data);
+            config.onHangUp(duration);
           } else {
             navigation.goBack();
             origin === 'ZegoUIKitPrebuiltCallWaitingScreen' && invitees.length === 1 && navigation.goBack();
