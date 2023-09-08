@@ -35,6 +35,7 @@ export default function ZegoUIKitPrebuiltCallInCallScreen(props) {
     routeParams.invitees = route.params.invitees;
     routeParams.inviter = route.params.inviter;
     routeParams.invitationID = route.params.invitationID;
+    routeParams.custom_data = route.params.custom_data;
   }
   // console.log('#####ZegoUIKitPrebuiltCallInCallScreen#######', routeParams, route.params);
   const {
@@ -44,6 +45,7 @@ export default function ZegoUIKitPrebuiltCallInCallScreen(props) {
     invitees,
     inviter,
     invitationID,
+    custom_data,
   } = routeParams;
   const callInvitationData = {
     type: isVideoCall
@@ -152,10 +154,10 @@ export default function ZegoUIKitPrebuiltCallInCallScreen(props) {
       config={{
         ...config,
         onHangUp: (duration) => {
-          console.log('On Hang Up Duration By Farhan ', duration)
+          console.log('On Hang Up Duration By Farhan ', duration, custom_data)
           hangUpHandle();
           if (typeof config.onHangUp === 'function') {
-            config.onHangUp(duration);
+            config.onHangUp(duration, custom_data);
           } else {
             navigation.goBack();
             origin === 'ZegoUIKitPrebuiltCallWaitingScreen' && invitees.length === 1 && navigation.goBack();
