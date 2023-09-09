@@ -45,7 +45,7 @@ export default function ZegoUIKitPrebuiltCallInCallScreen(props) {
     invitees,
     inviter,
     invitationID,
-    custom_data,
+    customData,
   } = routeParams;
   const callInvitationData = {
     type: isVideoCall
@@ -154,7 +154,7 @@ export default function ZegoUIKitPrebuiltCallInCallScreen(props) {
       config={{
         ...config,
         onHangUp: (duration) => {
-          console.log('On Hang Up Duration By Farhan ', duration, custom_data)
+          console.log('On Hang Up Duration By Farhan ', duration, customData)
           hangUpHandle();
           if (typeof config.onHangUp === 'function') {
             config.onHangUp(duration);

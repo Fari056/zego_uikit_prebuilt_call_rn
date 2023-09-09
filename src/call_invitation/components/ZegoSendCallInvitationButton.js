@@ -33,7 +33,7 @@ export default function ZegoSendCallInvitationButton(props) {
   const data = JSON.stringify({
     call_id: roomID,
     invitees: invitees.map(invitee => {
-      return { user_id: invitee.userID, user_name: invitee.userName }
+      return { user_id: invitee.userID, user_name: invitee.userName, user_call: custom_data }
     }),
     type: isVideoCall ? ZegoInvitationType.videoCall : ZegoInvitationType.voiceCall,
     inviter: { id: localUser.userID, name: localUser.userName },
@@ -57,7 +57,7 @@ export default function ZegoSendCallInvitationButton(props) {
         invitees,
         inviter: localUser.userID,
         invitationID,
-        customData: custom_data,
+        data,
       });
     } else {
       // Jump to call room page
@@ -68,7 +68,7 @@ export default function ZegoSendCallInvitationButton(props) {
         invitees: getInviteeIDList(),
         inviter: localUser.userID,
         invitationID,
-        customData: custom_data,
+        data,
       });
     }
     setForceRender(Date.now());
