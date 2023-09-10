@@ -37,7 +37,6 @@ export default function ZegoUIKitPrebuiltCallInCallScreen(props) {
     routeParams.invitationID = route.params.invitationID;
     routeParams.customData = route.params.customData;
   }
-  console.log('route.params.customData', routeParams, route.params);
   const {
     origin,
     roomID,
@@ -52,6 +51,7 @@ export default function ZegoUIKitPrebuiltCallInCallScreen(props) {
       ? ZegoInvitationType.videoCall
       : ZegoInvitationType.voiceCall,
     invitees,
+    SomeData: 'Data::::'
   };
   const requireDefaultConfig = (data) => {
     const callConfig =

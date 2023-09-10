@@ -65,7 +65,7 @@ export default function ZegoCallInvitationDialog(props) {
   const refuseHandle = () => {
     CallInviteHelper.getInstance().refuseCall(callID)
     if (Platform.OS === 'android') {
-        RNCallKeep.endAllCalls();
+      RNCallKeep.endAllCalls();
     }
   };
   const refuseFailHandle = (error) => {
@@ -79,7 +79,7 @@ export default function ZegoCallInvitationDialog(props) {
     }
     setIsDialogVisable(false);
     setIsFullScreen(false);
-
+    console.log('move to call::::', data)
     navigation.navigate('ZegoUIKitPrebuiltCallInCallScreen', {
       roomID: data.call_id,
       isVideoCall: data.type === ZegoInvitationType.videoCall,
@@ -88,9 +88,9 @@ export default function ZegoCallInvitationDialog(props) {
     });
   }
   const acceptHandle = () => {
-    CallInviteHelper.getInstance().acceptCall(callID, {...extendData, inviteType, inviter});
+    CallInviteHelper.getInstance().acceptCall(callID, { ...extendData, inviteType, inviter });
     if (Platform.OS === 'android') {
-        RNCallKeep.endAllCalls();
+      RNCallKeep.endAllCalls();
     }
   };
   const acceptFailHandle = (error) => {

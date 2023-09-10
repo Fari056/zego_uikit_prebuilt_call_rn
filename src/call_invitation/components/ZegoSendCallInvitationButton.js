@@ -57,7 +57,7 @@ export default function ZegoSendCallInvitationButton(props) {
         invitees,
         inviter: localUser.userID,
         invitationID,
-        data,
+        customData: custom_data,
       });
     } else {
       // Jump to call room page
@@ -68,7 +68,7 @@ export default function ZegoSendCallInvitationButton(props) {
         invitees: getInviteeIDList(),
         inviter: localUser.userID,
         invitationID,
-        data,
+        customData: custom_data,
       });
     }
     setForceRender(Date.now());
