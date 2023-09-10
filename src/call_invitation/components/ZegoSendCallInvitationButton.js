@@ -42,7 +42,6 @@ export default function ZegoSendCallInvitationButton(props) {
   const [forceRender, setForceRender] = useState(Date.now());
 
   const onPress = ({ errorCode, errorMessage, errorInvitees, invitationID, invitees: successfulInvitees }) => {
-    console.log('custom_data:::By Farhan', custom_data)
     CallInviteStateManage.addInviteData(
       invitationID,
       localUser.userID,

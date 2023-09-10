@@ -85,6 +85,7 @@ export default function ZegoCallInvitationDialog(props) {
       isVideoCall: data.type === ZegoInvitationType.videoCall,
       invitees: data.invitees,
       inviter: data.inviter.id,
+      customData: data.customData,
     });
   }
   const acceptHandle = () => {
