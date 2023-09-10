@@ -16,7 +16,7 @@ export default function ZegoUIKitPrebuiltCallWaitingScreen(props) {
   const { appID, appSign } = ZegoUIKitPrebuiltCallService.getInstance().getInitAppInfo();
   const { userID, userName } = ZegoUIKitPrebuiltCallService.getInstance().getInitUser();
   const initConfig = ZegoUIKitPrebuiltCallService.getInstance().getInitConfig();
-  const { token = '', onRequireNewToken, onOutgoingCallCancelButtonPressed} = initConfig;
+  const { token = '', onRequireNewToken, onOutgoingCallCancelButtonPressed } = initConfig;
   const { route } = props;
   const {
     roomID,
@@ -24,6 +24,7 @@ export default function ZegoUIKitPrebuiltCallWaitingScreen(props) {
     invitees,
     inviter,
     invitationID,
+    customData,
   } = route.params;
 
   const getInviteeIDList = () => {
@@ -78,7 +79,7 @@ export default function ZegoUIKitPrebuiltCallWaitingScreen(props) {
       onOutgoingCallCancelButtonPressed()
     }
     if (CallInviteStateManage.isAutoCancelInvite(invitationID)) {
-      ZegoUIKit.getSignalingPlugin().cancelInvitation(getInviteeIDList(), JSON.stringify({"call_id": roomID, "operation_type": "cancel_invitation"}));
+      ZegoUIKit.getSignalingPlugin().cancelInvitation(getInviteeIDList(), JSON.stringify({ "call_id": roomID, "operation_type": "cancel_invitation" }));
       CallInviteStateManage.updateInviteDataAfterCancel(invitationID);
     }
     BellManage.stopOutgoingSound();
@@ -96,7 +97,7 @@ export default function ZegoUIKitPrebuiltCallWaitingScreen(props) {
         if (appSign) {
           ZegoUIKit.joinRoom(roomID);
         } else {
-          ZegoUIKit.joinRoom(roomID, token || (typeof onRequireNewToken === 'function' ? (onRequireNewToken() || '') : '' ));
+          ZegoUIKit.joinRoom(roomID, token || (typeof onRequireNewToken === 'function' ? (onRequireNewToken() || '') : ''));
         }
       });
     });
@@ -135,14 +136,15 @@ export default function ZegoUIKitPrebuiltCallWaitingScreen(props) {
         zloginfo('Jump to call room page.');
         BellManage.stopOutgoingSound();
         // ZegoUIKit.leaveRoom().then(() => {
-          navigation.navigate('ZegoUIKitPrebuiltCallInCallScreen', {
-            origin: 'ZegoUIKitPrebuiltCallWaitingScreen',
-            roomID,
-            isVideoCall,
-            invitees: getInviteeIDList(),
-            inviter,
-            invitationID,
-          });
+        navigation.navigate('ZegoUIKitPrebuiltCallInCallScreen', {
+          origin: 'ZegoUIKitPrebuiltCallWaitingScreen',
+          roomID,
+          isVideoCall,
+          invitees: getInviteeIDList(),
+          inviter,
+          invitationID,
+          customData,
+        });
         // });
       }
     );
