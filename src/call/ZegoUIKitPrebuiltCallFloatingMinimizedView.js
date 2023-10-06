@@ -11,8 +11,8 @@ import {
 import ZegoUIKit, { ZegoAudioVideoView } from '@zegocloud/zego-uikit-rn';
 import MinimizingHelper from "./services/minimizing_helper";
 import { zloginfo } from "../utils/logger";
-  
-export default function ZegoUIKitPrebuiltCallFloatingMinimizedView(props: any) {
+
+export default function ZegoUIKitPrebuiltCallFloatingMinimizedView(props) {
     const window = useWindowDimensions();
     const {
         width = 90,
@@ -76,9 +76,9 @@ export default function ZegoUIKitPrebuiltCallFloatingMinimizedView(props: any) {
     });
 
     const callbackID = 'ZegoMinimizeRoom' + String(Math.floor(Math.random() * 10000));
-    
+
     const layoutHandle = useCallback((e) => {
-        const  { x, y, width, height } = e.nativeEvent.layout;
+        const { x, y, width, height } = e.nativeEvent.layout;
         zloginfo('[ZegoUIKitPrebuiltCallFloatingMinimizedView] layoutHandle', x, y, width, height);
         setFloatViewInfo({ width, height });
     }, []);
